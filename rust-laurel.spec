@@ -31,6 +31,7 @@ Summary:        %{summary}
 # FIXME: paste output of %%cargo_license_summary here
 License:        # FIXME
 # LICENSE.dependencies contains a full license breakdown
+Requires:       audit
 
 %description -n %{crate} %{_description}
 
@@ -47,7 +48,6 @@ License:        # FIXME
 %package        devel
 Summary:        %{summary}
 BuildArch:      noarch
-Requires:       audit
 
 %description    devel %{_description}
 

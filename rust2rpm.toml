@@ -15,7 +15,7 @@ cargo-toml-patch-comments = [
 
 [requires]
 build = ["systemd-rpm-macros"]
-lib = ["audit"]
+bin = ["audit"]
 
 [scripts.install]
 pre = [
