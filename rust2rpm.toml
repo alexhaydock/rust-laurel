@@ -2,11 +2,15 @@
 description = "LAUREL is an event post-processing plugin for auditd(8) that transforms and enriches audit logs to improve their utility for modern security monitoring setups."
 
 extra-sources = [
-  { "number" = 2, "file" = "rust-laurel.sysusers", "comments" = ["Defines user to be added for LAUREL."] },
+  { "number" = 3, "file" = "rust-laurel.sysusers", "comments" = ["Defines user to be added for LAUREL."] },
 ]
 
 extra-files = [
   "%{_sysusersdir}/rust-laurel.conf",
+]
+
+cargo-toml-patch-comments = [
+    "remove unused benchmark-only dependencies",
 ]
 
 [requires]
@@ -15,9 +19,9 @@ lib = ["audit"]
 
 [scripts.install]
 pre = [
-    "%sysusers_create_compat %{SOURCE2}",
+    "%sysusers_create_compat %{SOURCE3}",
 ]
 post = [
     "# sysusers",
-    "install -D -p -m 0644 %{SOURCE2} %{buildroot}%{_sysusersdir}/rust-laurel.conf",
+    "install -D -p -m 0644 %{SOURCE3} %{buildroot}%{_sysusersdir}/rust-laurel.conf",
 ]

@@ -1,0 +1,40 @@
+--- laurel-0.6.3/Cargo.toml	1970-01-01T00:00:01+00:00
++++ laurel-0.6.3/Cargo.toml	2024-12-14T20:52:20.880863+00:00
+@@ -31,14 +31,15 @@
+ categories = ["encoding"]
+ license = "GPL-3.0-or-later"
+ repository = "https://github.com/threathunters-io/laurel"
++autobenches = false
+ 
+-[[bench]]
+-name = "coalesce_execve"
+-harness = false
++#[[bench]]
++#name = "coalesce_execve"
++#harness = false
+ 
+-[[bench]]
+-name = "parse"
+-harness = false
++#[[bench]]
++#name = "parse"
++#harness = false
+ 
+ [dependencies.anyhow]
+ version = "1"
+@@ -104,11 +105,11 @@
+ [dependencies.toml]
+ version = "0.5"
+ 
+-[dev-dependencies.divan]
+-version = "0.1.13"
++#[dev-dependencies.divan]
++#version = "0.1.13"
+ 
+-[dev-dependencies.gperftools]
+-version = "0"
++#[dev-dependencies.gperftools]
++#version = "0"
+ 
+ [build-dependencies.bindgen]
+ version = ">= 0.60"
