@@ -1,0 +1,22 @@
+[package]
+description = "LAUREL is an event post-processing plugin for auditd(8) that transforms and enriches audit logs to improve their utility for modern security monitoring setups."
+
+[requires]
+build = ["systemd-rpm-macros"]
+lib = ["audit"]
+
+[[package.extra-sources]]
+number = 10
+file = "rust-laurel.sysusers"
+comments = [
+    "Defines user to be added for LAUREL."
+]
+
+[scripts.install]
+pre = [
+    "%sysusers_create_compat %{S:10}",
+]
+post = [
+    "# sysusers",
+    "install -D -p -m 0644 %{S:10} %{buildroot}%{_sysusersdir}/rust-laurel.conf",
+]
