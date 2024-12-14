@@ -12,7 +12,7 @@ License:        GPL-3.0-or-later
 URL:            https://crates.io/crates/laurel
 Source:         %{crates_source}
 # * Defines user to be added for LAUREL.
-Source10:       rust-laurel.sysusers
+Source2:        rust-laurel.sysusers
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  systemd-rpm-macros
@@ -38,6 +38,7 @@ License:        # FIXME
 %doc performance.md
 %{_bindir}/laurel
 %{_bindir}/laurel2audit
+%{_sysusersdir}/rust-laurel.conf
 
 %package        devel
 Summary:        %{summary}
@@ -93,10 +94,10 @@ use the "procfs" feature of the "%{crate}" crate.
 %{cargo_license} > LICENSE.dependencies
 
 %install
-%sysusers_create_compat %{S:10}
+%sysusers_create_compat %{SOURCE2}
 %cargo_install
 # sysusers
-install -D -p -m 0644 %{S:10} %{buildroot}%{_sysusersdir}/rust-laurel.conf
+install -D -p -m 0644 %{SOURCE2} %{buildroot}%{_sysusersdir}/rust-laurel.conf
 
 %if %{with check}
 %check
