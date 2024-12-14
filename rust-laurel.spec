@@ -19,6 +19,7 @@ Patch:          laurel-fix-metadata.diff
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  systemd-rpm-macros
+%{?sysusers_requires_compat}
 
 %global _description %{expand:
 LAUREL is an event post-processing plugin for auditd(8) that transforms and enriches audit logs to improve their utility for modern security monitoring setups.}
@@ -96,11 +97,13 @@ use the "procfs" feature of the "%{crate}" crate.
 %{cargo_license_summary}
 %{cargo_license} > LICENSE.dependencies
 
-%install
+%pre
 %sysusers_create_compat %{SOURCE3}
-%cargo_install
+
+%install
 # sysusers
 install -D -p -m 0644 %{SOURCE3} %{buildroot}%{_sysusersdir}/rust-laurel.conf
+%cargo_install
 
 %if %{with check}
 %check

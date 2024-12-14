@@ -19,9 +19,6 @@ lib = ["audit"]
 
 [scripts.install]
 pre = [
-    "%sysusers_create_compat %{SOURCE3}",
-]
-post = [
     "# sysusers",
     "install -D -p -m 0644 %{SOURCE3} %{buildroot}%{_sysusersdir}/rust-laurel.conf",
 ]
